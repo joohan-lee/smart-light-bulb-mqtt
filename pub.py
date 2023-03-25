@@ -45,8 +45,17 @@ if __name__ == "__main__":
         # Update bulb state and brightness level based on user input every 5 seconds
         user_input_state = input('Input bulb_state(on/off) : ')
         if user_input_state == 'on':
-            user_input_brightness = int(
-                input('Input brightness level(0~100) : '))
+            try:
+                user_input_brightness = int(
+                    input('Input brightness level(0~100) : '))
+                if user_input_brightness < 0 or user_input_brightness > 100:
+                    print(
+                        "Brightness level must be between 0 and 100. Please try again.")
+                    continue
+            except ValueError:
+                print("Invalid input for brightness. Please try again.")
+                continue
+
         elif user_input_state == 'off':
             user_input_brightness = 0
         else:
